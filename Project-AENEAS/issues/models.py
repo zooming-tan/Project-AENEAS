@@ -2,7 +2,7 @@
 http://news.e-scribe.com/230 and snippet: http://djangosnippets.org/snippets/28/
 """
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
@@ -26,8 +26,8 @@ class Ticket(models.Model):
     title = models.CharField(_('title'), max_length=100, blank=True, null=True)
     submitted_date = models.DateField(_('date submitted'), auto_now_add=True)
     modified_date = models.DateField(_('date modified'), auto_now=True)
-    submitter = models.ForeignKey(User, verbose_name=_('submitter'), related_name="submitter")
-    assigned_to = models.ForeignKey(User, verbose_name=_('assigned to'))
+    submitter = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('submitter'), related_name="submitter")
+    assigned_to = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('assigned to'))
     description = models.TextField(_('description'), blank=True)
     status = models.IntegerField(_('status'), default=1, choices=STATUS_CODES)
     priority = models.IntegerField(_('priority'), default=1, choices=PRIORITY_CODES)
