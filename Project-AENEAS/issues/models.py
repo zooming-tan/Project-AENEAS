@@ -4,6 +4,7 @@ http://news.e-scribe.com/230 and snippet: http://djangosnippets.org/snippets/28/
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -22,6 +23,7 @@ PRIORITY_CODES = (
 apps = [app for app in settings.INSTALLED_APPS if not app.startswith('django.')]
 
 
+@python_2_unicode_compatible
 class Ticket(models.Model):
     """Trouble tickets"""
     title = models.CharField(_('title'), max_length=100)
@@ -39,5 +41,5 @@ class Ticket(models.Model):
         verbose_name_plural = _('tickets')
         ordering = ('status', 'priority', 'submitted_date', 'title')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
