@@ -23,7 +23,7 @@ PRIORITY_CODES = (
 @python_2_unicode_compatible
 class Ticket(models.Model):
     """Trouble tickets"""
-    title = models.CharField(_('title'), max_length=100)
+    title = models.CharField(_('title'), max_length=100, blank=True, null=True)
     submitted_date = models.DateField(_('date submitted'), auto_now_add=True)
     modified_date = models.DateField(_('date modified'), auto_now=True)
     submitter = models.ForeignKey(User, verbose_name=_('submitter'), related_name="submitter")
