@@ -44,6 +44,7 @@ THIRD_PARTY_APPS = (
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'Project-AENEAS.users',  # custom users app
+    'Project-AENEAS.issues',
     # Your stuff: custom apps go here
 )
 
